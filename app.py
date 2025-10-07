@@ -45,16 +45,10 @@ if st.button("🔍 Predict My Stress Level"):
     conf = round(max(probs) * 100, 2)
 
     # Color-coded display for 5 levels
-    color_labels = {
-        "Very Low": "🟢 Very Low (You seem completely relaxed!)",
-        "Low": "🟢 Low (You're doing great — calm and balanced!)",
-        "Moderate": "🟡 Moderate (Take a short break today!)",
-        "High": "🟠 High (You may need some rest or self-care.)",
-        "Very High": "🔴 Very High (Please relax and take it easy!)"
-    }
+    color = { "Low": "🟢 Low (You seem relaxed!)", "Moderate": "🟡 Moderate (Take a short break today!)", "High": "🔴 High (Try to rest and relax!)" }
 
     st.subheader("Your Stress Level:")
-    st.success(color_labels.get(pred, pred))
+    st.success(color.get(pred, pred))
     st.write(f"**Model Confidence:** {conf}%")
 
     # Optional probability visualization
@@ -70,12 +64,12 @@ if st.button("🔍 Predict My Stress Level"):
     # Suggestion message
     if pred == "Very High":
         st.error("⚠️ High stress detected. Take time to rest, breathe, or meditate.")
-    elif pred == "High":
+    if pred == "High":
         st.warning("💡 Tip: Go for a walk, listen to music, or take a short break.")
     elif pred == "Moderate":
         st.info("💡 Tip: You're doing okay, but balance work and rest.")
-    elif pred == "Low":
-        st.success("🌿 You’re calm and composed. Keep maintaining balance!")
+    # elif pred == "Low":
+    #     st.success("🌿 You’re calm and composed. Keep maintaining balance!")
     else:
         st.balloons()
         st.success("🎉 Totally relaxed! Great job taking care of yourself.")
